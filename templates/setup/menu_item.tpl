@@ -1,0 +1,1 @@
+<a href="{devblocks_url}c=config&a=clickatell{/devblocks_url}">{'wgm.clickatell.common'|devblocks_translate}</a>

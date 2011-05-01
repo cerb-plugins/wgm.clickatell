@@ -1,0 +1,91 @@
+<!DOCTYPE plugin SYSTEM "../../libs/devblocks/plugin.dtd">
+<plugin>
+	<id>wgm.clickatell</id>
+	<name>[WGM] Clickatell Integration</name>
+	<description>This plugin provides integration with Clickatell for SMS functionality.</description>
+	<author>WebGroup Media, LLC.</author>
+	<revision>1</revision>
+	<link>http://www.cerb5.com/</link>
+	<!--<image>plugin.png</image>-->
+ 
+	<!-- Plugin Dependencies -->
+	
+	<dependencies>
+		<require plugin_id="cerberusweb.core" version="5.3.0" />
+	</dependencies>
+
+	<!-- Patches -->
+	
+	<patches>
+		<!--
+		<patch version="5.3.0" revision="1" file="patches/5.3.0.php" />
+		-->
+	</patches>
+	
+	<!-- Exported Classes -->
+	
+	<class_loader>
+		<file path="api/App.php">
+			<class name="WgmClickatell_API" />
+		</file>
+		
+		<!--
+		<file path="libs/twilio-php/twilio.php">
+			<class name="TwilioException" />
+			<class name="TwilioRestClient" />
+			<class name="TwilioRestResponse" />
+			<class name="TwilioUtils" />
+		</file>
+		-->
+	</class_loader>
+
+	<!-- Extensions -->
+ 
+	<extensions>
+
+		<!-- Setup Page Menu Item -->
+
+		<extension point="cerberusweb.ui.page.menu.item">
+			<id>wgmclickatell.setup.menu.plugins.clickatell</id>
+			<name>Clickatell Plugins Menu Item</name>
+			<class>
+				<file>api/App.php</file>
+				<name>WgmClickatell_SetupPluginsMenuItem</name>
+			</class>
+			<params>
+				<param key="page_id" value="core.page.configuration" />
+				<param key="menu_id" value="core.setup.menu.plugins" />
+			</params>
+		</extension>
+		
+		<!-- Setup Page Sections -->
+		
+		<extension point="cerberusweb.ui.page.section">
+			<id>wgmclickatell.setup.clickatell</id>
+			<name>Setup Page Clickatell Section</name>
+			<class>
+				<file>api/App.php</file>
+				<name>WgmClickatell_SetupSection</name>
+			</class>
+			<params>
+				<param key="page_id" value="core.page.configuration" />
+				<param key="uri" value="clickatell" />
+			</params>
+		</extension>
+		
+		<!-- Event Actions -->
+		
+		<extension point="devblocks.event.action">
+			<id>wgmclickatell.event.action.send_sms</id>
+			<name>Send SMS Event Action</name>
+			<class>
+				<file>api/App.php</file>
+				<name>WgmClickatell_EventActionSendSms</name>
+			</class>
+			<params>
+				<param key="label" value="Send SMS via Clickatell" />
+			</params>
+		</extension>
+		
+    </extensions> 
+</plugin>
