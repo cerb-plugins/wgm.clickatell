@@ -9,7 +9,7 @@
 <fieldset>
 	<legend>API Credentials</legend>
 	
-	<b>Account ID:</b><br>
+	<b>API ID:</b><br>
 	<input type="text" name="api_id" value="{$params.api_id}" size="24"><br>
 	<br>
 	
