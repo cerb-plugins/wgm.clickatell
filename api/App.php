@@ -123,12 +123,12 @@ class WgmClickatell_EventActionSendSms extends Extension_DevblocksEventAction {
 		$tpl->display('devblocks:wgm.clickatell::events/action_send_sms_clickatell.tpl');
 	}
 	
-	function run($token, Model_TriggerEvent $trigger, $params, &$values) {
+	function run($token, Model_TriggerEvent $trigger, $params, DevblocksDictionaryDelegate $dict) {
 		$clickatell = WgmClickatell_API::getInstance();
 		
 		// Translate message tokens
 		$tpl_builder = DevblocksPlatform::getTemplateBuilder();
-		$content = $tpl_builder->build($params['content'], $values);
+		$content = $tpl_builder->build($params['content'], $dict);
 		
 		$result = $clickatell->sendmsg($params['phone'], $content);
 	}
