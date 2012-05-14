@@ -1,11 +1,7 @@
-Cerb5 Plugins - wgm.clickatell
+Cerb6 Plugins - wgm.clickatell
 ===========================================
 Copyright (C) 2012 WebGroup Media, LLC.  
 [http://www.cerberusweb.com/](http://www.cerberusweb.com/)  
-
-Experimental
-------------
-This plugin is currently being developed and is offered on an experimental basis.  _It is currently only compatible with Cerberus Helpdesk 5.4 or later_.
 
 What's this?
 ------------
@@ -13,8 +9,8 @@ This plugin provides integration with [Clickatell](http://www.clickatell.com/) f
 
 Installation
 ------------
-* Change directory to **/cerb5/storage/plugins/**
-* `git clone git://github.com/cerb5-plugins/wgm.clickatell.git`
+* Change directory to **/cerb6/storage/plugins/**
+* `git clone git://github.com/cerb6-plugins/wgm.clickatell.git`
 * In your helpdesk, enable the plugin from **Setup->Plugins**.
 * Click **Setup->Plugins->Clickatell** and configure your Clickatell API credentials.
 
