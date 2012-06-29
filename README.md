@@ -1,4 +1,4 @@
-Cerb6 Plugins - wgm.clickatell
+Cerb Plugins - wgm.clickatell
 ===========================================
 Copyright (C) 2012 WebGroup Media, LLC.  
 [http://www.cerberusweb.com/](http://www.cerberusweb.com/)  
@@ -10,7 +10,7 @@ This plugin provides integration with [Clickatell](http://www.clickatell.com/) f
 Installation
 ------------
 * Change directory to **/cerb6/storage/plugins/**
-* `git clone git://github.com/cerb6-plugins/wgm.clickatell.git`
+* `git clone git://github.com/cerb-plugins/wgm.clickatell.git`
 * In your helpdesk, enable the plugin from **Setup->Plugins**.
 * Click **Setup->Plugins->Clickatell** and configure your Clickatell API credentials.
 
