@@ -89,7 +89,7 @@ class WgmClickatell_API {
 	public function sendmsg($phone, $text) {
 		$phone = DevblocksPlatform::strAlphaNum($phone);
 		
-		$url = sprintf("http://api.clickatell.com/http/sendmsg?user=%s&password=%s&api_id=%s&to=%s&text=%s",
+		$url = sprintf("https://api.clickatell.com/http/sendmsg?user=%s&password=%s&api_id=%s&to=%s&text=%s",
 			urlencode($this->_api_user),
 			urlencode($this->_api_pass),
 			urlencode($this->_api_id),
@@ -97,13 +97,11 @@ class WgmClickatell_API {
 			urlencode($text)
 		);
 		
-		$ch = curl_init();
+		$ch = DevblocksPlatform::curlInit();
 		curl_setopt($ch, CURLOPT_URL, $url);
 		curl_setopt($ch, CURLOPT_HEADER, false);
-		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-		curl_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
-		$out = curl_exec($ch);
+		$out = DevblocksPlatform::curlExec($ch);
 		curl_close($ch);
 		
 		$result = (0==strcasecmp("ID:",substr($out,0,3)));
