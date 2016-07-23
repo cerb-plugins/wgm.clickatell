@@ -4,7 +4,7 @@
 	<name>Clickatell Integration</name>
 	<description>This plugin provides integration with Clickatell for SMS functionality.  This plugin is intended to be a bridge used by other plugins to communicate with Clickatell services.</description>
 	<author>Webgroup Media, LLC.</author>
-	<version>1.0.18</version>
+	<version>1.0.19</version>
 	<link>http://www.cerbweb.com/book/latest/plugins/wgm.clickatell.html</link>
 	<image>plugin.png</image>
  
@@ -44,7 +44,7 @@
 			</class>
 			<params>
 				<param key="page_id" value="core.page.configuration" />
-				<param key="menu_id" value="core.setup.menu.plugins" />
+				<param key="menu_id" value="core.setup.menu.settings" />
 			</params>
 		</extension>
 		
