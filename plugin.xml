@@ -11,7 +11,7 @@
 	<!-- Requirements -->
 
 	<requires>
-		<app_version min="7.2" max="7.3.99" />
+		<app_version min="7.3" max="7.3.99" />
 		<php_extension name="curl" />
 	</requires>
  
@@ -20,6 +20,12 @@
 	<dependencies>
 		<require plugin_id="cerberusweb.core" version="7.3.0" />
 	</dependencies>
+	
+	<!-- Patches -->
+	
+	<patches>
+		<patch version="7.3.0" revision="2" file="patches/7.3.0.php" />
+	</patches>
 
 	<!-- Exported Classes -->
 	

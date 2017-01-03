@@ -11,15 +11,15 @@
 	<legend>API Credentials</legend>
 	
 	<b>API ID:</b><br>
-	<input type="text" name="api_id" value="{$params.api_id}" size="24"><br>
+	<input type="text" name="api_id" value="{$credentials.id}" size="24"><br>
 	<br>
 	
 	<b>Username:</b><br>
-	<input type="text" name="api_user" value="{$params.api_user}" size="24"><br>
+	<input type="text" name="api_user" value="{$credentials.user}" size="24"><br>
 	<br>
 	
 	<b>{'common.password'|devblocks_translate|capitalize}:</b><br>
-	<input type="password" name="api_pass" value="{$params.api_pass}" size="24"><br>
+	<input type="password" name="api_pass" value="{$credentials.pass}" size="24"><br>
 	<br>
 
 	<div class="status"></div>	

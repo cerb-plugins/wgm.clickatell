@@ -17,35 +17,44 @@ class WgmClickatell_SetupSection extends Extension_PageSection {
 	
 	function render() {
 		$tpl = DevblocksPlatform::getTemplateService();
+		$active_worker = CerberusApplication::getActiveWorker();
+		
+		if(!$active_worker->is_superuser)
+			return;
 
 		$visit = CerberusApplication::getVisit();
 		$visit->set(ChConfigurationPage::ID, 'clickatell');
 		
-		$params = array(
-			'api_user' => DevblocksPlatform::getPluginSetting('wgm.clickatell','api_user',''),
-			'api_pass' => DevblocksPlatform::getPluginSetting('wgm.clickatell','api_pass',''),
-			'api_id' => DevblocksPlatform::getPluginSetting('wgm.clickatell','api_id',''),
-		);
-		$tpl->assign('params', $params);
+		$credentials = DevblocksPlatform::getPluginSetting('wgm.clickatell', 'credentials', '', true, true);
+		$tpl->assign('credentials', $credentials);
 		
 		$tpl->display('devblocks:wgm.clickatell::setup/index.tpl');
 	}
 	
 	function saveJsonAction() {
+		$active_worker = CerberusApplication::getActiveWorker();
+		
+		if(!$active_worker->is_superuser)
+			return;
+		
 		try {
 			@$api_user = DevblocksPlatform::importGPC($_REQUEST['api_user'],'string','');
 			@$api_pass = DevblocksPlatform::importGPC($_REQUEST['api_pass'],'string','');
 			@$api_id = DevblocksPlatform::importGPC($_REQUEST['api_id'],'string','');
 			
 			if(empty($api_user) || empty($api_pass) || empty($api_id))
-				throw new Exception("All API fields are required.");			
+				throw new Exception("All API fields are required.");
 			
-			DevblocksPlatform::setPluginSetting('wgm.clickatell','api_user',$api_user);
-			DevblocksPlatform::setPluginSetting('wgm.clickatell','api_pass',$api_pass);
-			DevblocksPlatform::setPluginSetting('wgm.clickatell','api_id',$api_id);
+			$credentials = [
+				'id' => $api_id,
+				'user' => $api_user,
+				'pass' => $api_pass,
+			];
 			
-		    echo json_encode(array('status'=>true,'message'=>'Saved!'));
-		    return;
+			DevblocksPlatform::setPluginSetting('wgm.clickatell', 'credentials', $credentials, true, true);
+			
+			echo json_encode(array('status'=>true,'message'=>'Saved!'));
+			return;
 			
 		} catch (Exception $e) {
 			echo json_encode(array('status'=>false,'error'=>$e->getMessage()));
@@ -63,9 +72,11 @@ class WgmClickatell_API {
 	private $_api_id = null;
 	
 	private function __construct() {
-		$this->_api_user = DevblocksPlatform::getPluginSetting('wgm.clickatell','api_user','');
-		$this->_api_pass = DevblocksPlatform::getPluginSetting('wgm.clickatell','api_pass','');
-		$this->_api_id = DevblocksPlatform::getPluginSetting('wgm.clickatell','api_id','');
+		$credentials = DevblocksPlatform::getPluginSetting('wgm.clickatell', 'credentials', [], true, true);
+		
+		$this->_api_user = @$credentials['user'];
+		$this->_api_pass = $credentials['pass'];
+		$this->_api_id = $credentials['id'];
 	}
 	
 	/**
