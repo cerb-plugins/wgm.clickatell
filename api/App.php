@@ -100,6 +100,7 @@ class WgmClickatell_API {
 	public function sendmsg($phone, $text) {
 		$phone = DevblocksPlatform::strAlphaNum($phone);
 		
+		// [TODO Switch to connected accounts?
 		$url = sprintf("https://api.clickatell.com/http/sendmsg?user=%s&password=%s&api_id=%s&to=%s&text=%s",
 			urlencode($this->_api_user),
 			urlencode($this->_api_pass),

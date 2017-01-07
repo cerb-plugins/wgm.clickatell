@@ -43,7 +43,7 @@
 
 		<extension point="cerberusweb.ui.page.menu.item">
 			<id>wgmclickatell.setup.menu.plugins.clickatell</id>
-			<name>Clickatell Plugins Menu Item</name>
+			<name>Clickatell</name>
 			<class>
 				<file>api/App.php</file>
 				<name>WgmClickatell_SetupPluginsMenuItem</name>
