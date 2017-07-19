@@ -25,7 +25,7 @@ class WgmClickatell_SetupSection extends Extension_PageSection {
 		$visit = CerberusApplication::getVisit();
 		$visit->set(ChConfigurationPage::ID, 'clickatell');
 		
-		$credentials = DevblocksPlatform::getPluginSetting('wgm.clickatell', 'credentials', '', true, true);
+		$credentials = DevblocksPlatform::getPluginSetting('wgm.clickatell', 'credentials', [], true, true);
 		$tpl->assign('credentials', $credentials);
 		
 		$tpl->display('devblocks:wgm.clickatell::setup/index.tpl');
