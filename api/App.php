@@ -4,7 +4,7 @@ class WgmClickatell_SetupPluginsMenuItem extends Extension_PageMenuItem {
 	const POINT = 'wgmclickatell.setup.menu.plugins.clickatell';
 	
 	function render() {
-		$tpl = DevblocksPlatform::getTemplateService();
+		$tpl = DevblocksPlatform::services()->template();
 		$tpl->assign('extension', $this);
 		$tpl->display('devblocks:wgm.clickatell::setup/menu_item.tpl');
 	}
@@ -16,7 +16,7 @@ class WgmClickatell_SetupSection extends Extension_PageSection {
 	const ID = 'wgmclickatell.setup.clickatell';
 	
 	function render() {
-		$tpl = DevblocksPlatform::getTemplateService();
+		$tpl = DevblocksPlatform::services()->template();
 		$active_worker = CerberusApplication::getActiveWorker();
 		
 		if(!$active_worker->is_superuser)
@@ -124,7 +124,7 @@ class WgmClickatell_API {
 if(class_exists('Extension_DevblocksEventAction')):
 class WgmClickatell_EventActionSendSms extends Extension_DevblocksEventAction {
 	function render(Extension_DevblocksEvent $event, Model_TriggerEvent $trigger, $params=array(), $seq=null) {
-		$tpl = DevblocksPlatform::getTemplateService();
+		$tpl = DevblocksPlatform::services()->template();
 		$tpl->assign('params', $params);
 		
 		if(!is_null($seq))
@@ -137,7 +137,7 @@ class WgmClickatell_EventActionSendSms extends Extension_DevblocksEventAction {
 		$clickatell = WgmClickatell_API::getInstance();
 		
 		// Translate message tokens
-		$tpl_builder = DevblocksPlatform::getTemplateBuilder();
+		$tpl_builder = DevblocksPlatform::services()->templateBuilder();
 		$content = $tpl_builder->build($params['content'], $dict);
 		
 		$result = $clickatell->sendmsg($params['phone'], $content);

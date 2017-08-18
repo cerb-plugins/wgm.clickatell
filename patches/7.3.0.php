@@ -1,7 +1,7 @@
 <?php
-$db = DevblocksPlatform::getDatabaseService();
-$logger = DevblocksPlatform::getConsoleLog();
-$settings = DevblocksPlatform::getPluginSettingsService();
+$db = DevblocksPlatform::services()->database();
+$logger = DevblocksPlatform::services()->log();
+$settings = DevblocksPlatform::services()->pluginSettings();
 $tables = $db->metaTables();
 
 $api_id = $settings->get('wgm.clickatell', 'api_id', null);
