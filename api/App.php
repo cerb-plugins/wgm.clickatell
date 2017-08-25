@@ -121,7 +121,6 @@ class WgmClickatell_API {
 	}
 };
 
-if(class_exists('Extension_DevblocksEventAction')):
 class WgmClickatell_EventActionSendSms extends Extension_DevblocksEventAction {
 	function render(Extension_DevblocksEvent $event, Model_TriggerEvent $trigger, $params=array(), $seq=null) {
 		$tpl = DevblocksPlatform::services()->template();
@@ -143,4 +142,3 @@ class WgmClickatell_EventActionSendSms extends Extension_DevblocksEventAction {
 		$result = $clickatell->sendmsg($params['phone'], $content);
 	}
 };
-endif;
